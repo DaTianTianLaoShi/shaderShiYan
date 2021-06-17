@@ -34,14 +34,14 @@
             {
                 float3 worldNormal : TEXCOORD0;
 				float3 worldPos:TEXCOORD1;
-				float3 uv:TEXCOORD2;
+				float2 uv:TEXCOORD2;
                 //UNITY_FOG_COORDS(1)
                 float4 pos : SV_POSITION;
             };
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-			float _Gloss;
+			float _Gloss; 
 			fixed4 _Specular;
 			fixed4 _Color;
             v2f vert (appdata v)
@@ -52,17 +52,22 @@
                // UNITY_TRANSFER_FOG(o,o.vertex);
 				o.worldNormal = UnityObjectToWorldNormal(v.normal);
 				o.worldPos =mul(unity_ObjectToWorld,v.vertex).xyz;
-
+				o.uv = TRANSFORM_TEX(v.texcoord,_MainTex);
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
+               // fixed4 col = tex2D(_MainTex, i.uv);
+			    fixed3 wordNormal = normalize(i.worldNormal);
                 // apply fog
-                UNITY_APPLY_FOG(i.fogCoord, col);
-                return col;
+                //UNITY_APPLY_FOG(i.fogCoord, col);
+			    fixed3 wordLightDir = normalize(UnityWorldSpaceLightDir(i.worldPos));
+                
+				
+				
+				//return col;
             }
             ENDCG
         }

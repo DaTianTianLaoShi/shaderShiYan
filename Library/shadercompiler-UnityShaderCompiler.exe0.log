@@ -1,16 +1,14 @@
 Base path: 'D:/Untiy/2019.4.23f1c1/Editor/Data', plugins path 'D:/Untiy/2019.4.23f1c1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
 Cmd: preprocess
-  insize=1519 outsize=399 ok=1
+  insize=1871 outsize=433 ok=1
 Cmd: preprocess
-  insize=1824 outsize=432 ok=1
+  insize=1872 outsize=433 ok=1
 Cmd: preprocess
-  insize=1821 outsize=433 ok=1
+  insize=1872 outsize=432 ok=1
 Cmd: preprocess
-  insize=1821 outsize=432 ok=1
+  insize=2025 outsize=433 ok=1
 Cmd: preprocess
-  insize=1821 outsize=433 ok=1
+  insize=2026 outsize=433 ok=1
 Cmd: preprocess
-  insize=1817 outsize=432 ok=1
-Cmd: preprocess
-  insize=1825 outsize=433 ok=1
+  insize=2028 outsize=433 ok=1

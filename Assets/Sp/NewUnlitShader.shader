@@ -22,6 +22,7 @@
             #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
+			#include "Lighting.cginc"
 
             struct appdata
             {
@@ -64,12 +65,17 @@
                 // apply fog
                 //UNITY_APPLY_FOG(i.fogCoord, col);
 			    fixed3 wordLightDir = normalize(UnityWorldSpaceLightDir(i.worldPos));
-                
-				
-				
+				fixed3 albedo = tex2D(_MainTex, i.uv).rgb*_Color.rgb;//采样纹理和颜色计算反射值
+				//标准计算光照模型
+				fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz*albedo;
+				fixed3 diffuse = _LightColor0.rgb*albedo*max(0,dot(wordNormal, wordLightDir));
+				return fixed4(ambient +diffuse,1.0);
 				//return col;
             }
+				
             ENDCG
         }
+			
     }
+			Fallback "Specular"
 }

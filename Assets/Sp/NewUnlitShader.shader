@@ -1,81 +1,83 @@
-﻿Shader "Unlit/NewUnlitShader"
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Unlit/NewUnlitShader"
 {
-    Properties
-    {
-        _MainTex ("Texture", 2D) = "white" {}
-	    _Color("Color",color)=(1,1,1,1)
-		_Specular("Specular",color)=(1,1,1,1)
-		_Gloss("Gloss",float)=20
-    }
-    SubShader
-    {
-        Tags { "RenderType"="Opaque" }
-		Tags{"LightMode"="FowardBase"}
-        LOD 100
+	Properties
+	{
+		_MainTex("Texture", 2D) = "white" {}
+		_Color("Color",color) = (1,1,1,1)
+		_Specular("Specular",color) = (1,1,1,1)
+		_Gloss("Gloss",Range(8.0,256)) = 20
+	}
+		SubShader
+		{
+			//Tags { "RenderType" = "Opaque" }
+			Tags{"LightMode" = "FowardBase"}
+			//LOD 100
 
-        Pass
-        {
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
-            // make fog work
-            #pragma multi_compile_fog
+			Pass
+			{
+				CGPROGRAM
+				#pragma vertex vert
+				#pragma fragment frag
+				// make fog work
+				#pragma multi_compile_fog
 
-            #include "UnityCG.cginc"
-			#include "Lighting.cginc"
+				#include "UnityCG.cginc"
+				#include "Lighting.cginc"
 
-            struct appdata
-            {
-                float4 vertex : POSITION;
-                float4 texcoord : TEXCOORD0;
-				float3 normal:NORMAL;
-            };
+				struct appdata
+				{
+					float4 vertex : POSITION;
+					float4 texcoord : TEXCOORD0;
+					float3 normal:NORMAL;
+				};
 
-            struct v2f
-            {
-                float3 worldNormal : TEXCOORD0;
-				float3 worldPos:TEXCOORD1;
-				float2 uv:TEXCOORD2;
-                //UNITY_FOG_COORDS(1)
-                float4 pos : SV_POSITION;
-            };
+				struct v2f
+				{
+					float3 worldNormal : TEXCOORD0;
+					float3 worldPos:TEXCOORD1;
+					float2 uv:TEXCOORD2;
+					//UNITY_FOG_COORDS(1)
+					float4 pos : SV_POSITION;
+				};
 
-            sampler2D _MainTex;
-            float4 _MainTex_ST;
-			float _Gloss; 
-			fixed4 _Specular;
-			fixed4 _Color;
-            v2f vert (appdata v)
-            {
-                v2f o;
-                o.pos = UnityObjectToClipPos(v.vertex);
-                //o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-               // UNITY_TRANSFER_FOG(o,o.vertex);
-				o.worldNormal = UnityObjectToWorldNormal(v.normal);
-				o.worldPos =mul(unity_ObjectToWorld,v.vertex).xyz;
-				o.uv = TRANSFORM_TEX(v.texcoord,_MainTex);
-                return o;
-            }
+				sampler2D _MainTex;
+				float4 _MainTex_ST;
+				float _Gloss;
+				fixed4 _Specular;
+				fixed4 _Color;
+				v2f vert(appdata v)
+				{
+					v2f o;
+					o.pos = UnityObjectToClipPos(v.vertex);
+					o.worldNormal = UnityObjectToWorldNormal(v.normal);
+					o.worldPos = mul(unity_ObjectToWorld,v.vertex).xyz;
+					o.uv = TRANSFORM_TEX(v.texcoord,_MainTex);
+					return o;
+				}
 
-            fixed4 frag (v2f i) : SV_Target
-            {
-                // sample the texture
-               // fixed4 col = tex2D(_MainTex, i.uv);
-			    fixed3 wordNormal = normalize(i.worldNormal);
-                // apply fog
-                //UNITY_APPLY_FOG(i.fogCoord, col);
-			    fixed3 wordLightDir = normalize(UnityWorldSpaceLightDir(i.worldPos));
+				fixed4 frag(v2f i) : SV_Target
+				{
+					// sample the texture
+				fixed3 wordNormal = normalize(i.worldNormal);
+				// apply fog
+				fixed3 wordLightDir = normalize(UnityWorldSpaceLightDir(i.worldPos));
 				fixed3 albedo = tex2D(_MainTex, i.uv).rgb*_Color.rgb;//采样纹理和颜色计算反射值
 				//标准计算光照模型
 				fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz*albedo;
-				fixed3 diffuse = _LightColor0.rgb*albedo*max(0,dot(wordNormal, wordLightDir));
-				return fixed4(ambient +diffuse,1.0);
+				fixed3 diffuse = _LightColor0.rgb*albedo*max(0, saturate(dot(wordNormal, wordLightDir)));
+				//计算lambert反射
+				fixed3 viewDir = normalize(UnityWorldSpaceViewDir(i.worldPos));
+				fixed3 halfDir = normalize(viewDir + wordLightDir);
+				fixed3 specular = _LightColor0.rgb*_Specular.rgb * pow(max(0,dot(wordNormal, halfDir)),_Gloss);
+				return fixed4(ambient +specular +diffuse ,1.0);
 				//return col;
-            }
-				
-            ENDCG
-        }
+			    }
+
+			ENDCG
+		}
 			
-    }
+		}
 			Fallback "Specular"
 }

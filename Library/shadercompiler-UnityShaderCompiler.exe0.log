@@ -1,86 +1,12 @@
 Base path: 'D:/Untiy/2019.4.23f1c1/Editor/Data', plugins path 'D:/Untiy/2019.4.23f1c1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
 Cmd: preprocess
-  insize=2273 outsize=511 ok=1
-Cmd: preprocess
-  insize=2275 outsize=511 ok=1
-Cmd: preprocess
-  insize=2275 outsize=511 ok=1
-Cmd: preprocess
-  insize=2383 outsize=511 ok=1
-Cmd: preprocess
-  insize=2264 outsize=511 ok=1
-Cmd: preprocess
-  insize=2264 outsize=511 ok=1
-Cmd: preprocess
-  insize=2275 outsize=511 ok=1
-Cmd: preprocess
-  insize=2266 outsize=511 ok=1
-Cmd: preprocess
-  insize=2256 outsize=510 ok=1
-Cmd: preprocess
-  insize=2303 outsize=511 ok=1
-Cmd: preprocess
-  insize=2303 outsize=511 ok=1
-Cmd: preprocess
-  insize=2303 outsize=511 ok=1
-Cmd: preprocess
-  insize=2307 outsize=511 ok=1
-Cmd: preprocess
-  insize=2307 outsize=511 ok=1
-Cmd: preprocess
-  insize=2307 outsize=511 ok=1
-Cmd: preprocess
-  insize=2309 outsize=513 ok=1
-Cmd: preprocess
-  insize=2297 outsize=511 ok=1
-Cmd: preprocess
-  insize=2297 outsize=511 ok=1
-Cmd: preprocess
-  insize=2269 outsize=511 ok=1
-Cmd: preprocess
-  insize=2262 outsize=511 ok=1
-Cmd: preprocess
-  insize=1408 outsize=288 ok=1
-Cmd: compileSnippet
-  api=4 type=0 insize=1558 outsize=690 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
-Cmd: compileSnippet
-  api=4 type=1 insize=1558 outsize=298 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
-Cmd: preprocess
-  insize=1643 outsize=361 ok=1
-Cmd: preprocess
-  insize=1652 outsize=360 ok=1
-Cmd: preprocess
-  insize=2251 outsize=511 ok=1
-Cmd: preprocess
-  insize=2247 outsize=511 ok=1
-Cmd: preprocess
-  insize=2247 outsize=511 ok=1
-Cmd: preprocess
-  insize=2243 outsize=511 ok=1
-Cmd: preprocess
-  insize=2243 outsize=511 ok=1
-Cmd: preprocess
-  insize=2246 outsize=511 ok=1
-Cmd: preprocess
-  insize=2248 outsize=511 ok=1
-Cmd: preprocess
-  insize=2250 outsize=511 ok=1
-Cmd: preprocess
-  insize=2272 outsize=511 ok=1
-Cmd: preprocess
-  insize=2270 outsize=510 ok=1
-Cmd: preprocess
-  insize=2240 outsize=511 ok=1
-Cmd: preprocess
-  insize=2217 outsize=512 ok=1
-Cmd: preprocess
-  insize=2236 outsize=512 ok=1
-Cmd: preprocess
-  insize=2237 outsize=512 ok=1
-Cmd: preprocess
-  insize=2236 outsize=512 ok=1
-Cmd: preprocess
-  insize=2234 outsize=512 ok=1
-Cmd: preprocess
   insize=2234 outsize=511 ok=1
+Cmd: preprocess
+  insize=1413 outsize=293 ok=1
+Cmd: preprocess
+  insize=1392 outsize=549 ok=1
+Cmd: preprocess
+  insize=1414 outsize=549 ok=1
+
+Quitting shader compiler process
